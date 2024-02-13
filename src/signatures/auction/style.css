@@ -1,0 +1,31 @@
+.email-signature {
+  font-family: Tahoma, sans-serif;
+  color: rgb(68, 68, 68);
+  font-size: 10pt;
+}
+
+.signature-header, .signature-body, .signature-footer {
+  width: 400px;
+}
+
+.signature-header b {
+  font-size: 12pt;
+}
+
+.signature-contact p {
+  margin: 0;
+}
+
+.signature-contact a {
+  color: rgb(1, 42, 186);
+}
+
+.social-icons img {
+  width: 26px;
+  height: 26px;
+}
+
+.disclaimer {
+  font-size: x-small;
+  text-align: justify;
+}
