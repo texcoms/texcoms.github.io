@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Event Download</title>
+    <title>Texcoms Event Download</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0"
@@ -43,55 +43,42 @@
       .icon {
         font-size: 64px;
         margin: 20px 0;
-        animation: pulse 2s infinite;
-      }
-      @keyframes pulse {
-        0%,
-        100% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.1);
-        }
       }
       p {
         font-size: 18px;
         margin: 20px 0;
         line-height: 1.6;
       }
+      .progress {
+        width: 100%;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 20px 0;
+      }
+      .progress-bar {
+        height: 100%;
+        background: #3eb8b8;
+        width: 0%;
+        transition: width 0.3s ease;
+        animation: progress 3s forwards;
+      }
+      @keyframes progress {
+        0% {
+          width: 0%;
+        }
+        100% {
+          width: 100%;
+        }
+      }
       .status {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
         margin: 15px 0;
         font-size: 16px;
       }
       .checkmark {
         color: #3eb8b8;
-        font-weight: bold;
         font-size: 20px;
-      }
-      .fallback-link {
-        margin-top: 35px;
-        padding-top: 25px;
-        border-top: 1px solid rgba(62, 184, 184, 0.3);
-      }
-      .fallback-link a {
-        color: #3eb8b8;
-        text-decoration: none;
-        font-weight: bold;
-        padding: 10px 20px;
-        border: 2px solid #3eb8b8;
-        border-radius: 8px;
-        display: inline-block;
-        transition: all 0.3s ease;
-      }
-      .fallback-link a:hover {
-        background-color: #3eb8b8;
-        color: #003973;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(62, 184, 184, 0.4);
       }
       .brand-text {
         font-size: 12px;
@@ -102,23 +89,17 @@
     </style>
     <script>
       window.onload = function () {
-        // Convert Google Drive share link to direct download
-        var fileId = '1XDD-7OL5zVf75GxIKPvTRmf3uybabEhJ';
-        var directDownloadUrl =
-          'https://drive.google.com/uc?export=download&id=' + fileId;
+        // Trigger PDF download using iframe method (works better on mobile)
+        var iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src =
+          'https://drive.google.com/uc?export=download&id=1XDD-7OL5zVf75GxIKPvTRmf3uybabEhJ';
+        document.body.appendChild(iframe);
 
-        // Trigger PDF download
-        var link = document.createElement('a');
-        link.href = directDownloadUrl;
-        link.download = 'texevent-document.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        // Open Google Form in new tab after short delay
+        // Redirect to Google Form after 3 seconds (same window, no popup blocker)
         setTimeout(function () {
-          window.open('https://forms.gle/F45WpntR7n8x16C16', '_blank');
-        }, 800);
+          window.location.href = 'https://forms.gle/F45WpntR7n8x16C16';
+        }, 3000);
       };
     </script>
   </head>
@@ -126,15 +107,30 @@
     <div class="container">
       <h2>Thank You!</h2>
       <div class="icon">✓</div>
-      <p>📥 Your Brochure download has been started automatically</p>
+
+      <div class="status">
+        <span class="checkmark">✓</span> Downloading brochure...
+      </div>
+
+      <div class="progress">
+        <div class="progress-bar"></div>
+      </div>
+
+      <div class="status">
+        <span class="checkmark">→</span> Redirecting to form in 3 seconds...
+      </div>
+
       <p style="font-size: 14px; margin-top: 30px">
-        If download didn't start,
+        Download not starting?
         <a
           href="https://drive.google.com/uc?export=download&id=1XDD-7OL5zVf75GxIKPvTRmf3uybabEhJ"
-          style="color: #fff; text-decoration: underline"
-          >click here</a
+          style="color: #3eb8b8; text-decoration: underline"
         >
+          Click here
+        </a>
       </p>
+
+      <div class="brand-text">Powered by Texcoms</div>
     </div>
   </body>
 </html>
