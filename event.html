@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Event Download</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+        padding: 50px 20px;
+        background: linear-gradient(
+          135deg,
+          #003973 0%,
+          #008080 50%,
+          #3eb8b8 100%
+        );
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+      }
+      .container {
+        background: rgba(0, 57, 115, 0.2);
+        padding: 50px 40px;
+        border-radius: 20px;
+        backdrop-filter: blur(15px);
+        box-shadow: 0 8px 32px rgba(0, 128, 128, 0.3);
+        border: 1px solid rgba(62, 184, 184, 0.3);
+        max-width: 500px;
+      }
+      h2 {
+        margin-bottom: 25px;
+        font-size: 32px;
+        color: #3eb8b8;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      .icon {
+        font-size: 64px;
+        margin: 20px 0;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+      p {
+        font-size: 18px;
+        margin: 20px 0;
+        line-height: 1.6;
+      }
+      .status {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 15px 0;
+        font-size: 16px;
+      }
+      .checkmark {
+        color: #3eb8b8;
+        font-weight: bold;
+        font-size: 20px;
+      }
+      .fallback-link {
+        margin-top: 35px;
+        padding-top: 25px;
+        border-top: 1px solid rgba(62, 184, 184, 0.3);
+      }
+      .fallback-link a {
+        color: #3eb8b8;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 10px 20px;
+        border: 2px solid #3eb8b8;
+        border-radius: 8px;
+        display: inline-block;
+        transition: all 0.3s ease;
+      }
+      .fallback-link a:hover {
+        background-color: #3eb8b8;
+        color: #003973;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(62, 184, 184, 0.4);
+      }
+      .brand-text {
+        font-size: 12px;
+        margin-top: 30px;
+        opacity: 0.8;
+        color: #3eb8b8;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        // Convert Google Drive share link to direct download
+        var fileId = '1XDD-7OL5zVf75GxIKPvTRmf3uybabEhJ';
+        var directDownloadUrl =
+          'https://drive.google.com/uc?export=download&id=' + fileId;
+
+        // Trigger PDF download
+        var link = document.createElement('a');
+        link.href = directDownloadUrl;
+        link.download = 'texevent-document.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Open Google Form in new tab after short delay
+        setTimeout(function () {
+          window.open('https://rebrand.ly/texevent01', '_blank');
+        }, 800);
+      };
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Thank You!</h2>
+      <div class="icon">✓</div>
+      <p>📥 Your Brochure download has started automatically</p>
+      <p style="font-size: 14px; margin-top: 30px">
+        If download didn't start,
+        <a
+          href="https://drive.google.com/uc?export=download&id=1XDD-7OL5zVf75GxIKPvTRmf3uybabEhJ"
+          style="color: #fff; text-decoration: underline"
+          >click here</a
+        >
+      </p>
+    </div>
+  </body>
+</html>
